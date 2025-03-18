@@ -1,0 +1,60 @@
+/* This file is the descriptor for the Custom python format fasta */
+{
+    "meta" : {
+        // label: name of the format as displayed, should be short
+        "label": "Custom format fasta",
+
+        // description: longer string to help end users understand what this format is
+        "description": "",
+
+        // icon: must be one of the FontAwesome 5.15.4 icons, complete list here at https://fontawesome.com/v5/docs/
+        "icon": "fas fa-file-import",
+        "iconColor": "orange"
+    },
+
+    /* whether the format can be selectable as a dataset format */
+    "canBeDatasetFormat": true,
+
+    /* whether the format can be used to read files. If true, the get_format_extractor() must return an extractor */
+    "canRead": true,
+
+    /* whether the format can be used to write files. If true, the get_output_formatter() must return a formatter */
+    "canWrite": false,
+
+    /* whether the format can provide the schema without reading the data. If true, the FormatExtractor must implement read_schema() */
+    "canExtractSchema": true,
+
+    /* to get additional options in the export dialogs, list them here */
+    /*
+    "exportOptions": [
+        {
+            "id": "Export as FASTA",
+            "label": "export using FASTA plugin",
+            "predefinedConfig" : { "file_extension": ".fasta" },
+            "compression": "NONE"
+        }
+    ],
+    */
+
+    /* A mime type to use when exporting (if not set: the format is assumed to produce binary data) */
+    "mime" : {
+        /* the mime-type sent to the browser */
+        "mimeType": "text/plain",
+        /* DSS creates file names by concatenating a unique identifier and this extension */
+        "extension": ".fasta"
+    },
+
+
+    /* params:
+    DSS will generate a formular from this list of requested parameters.
+    Your component code can then access the value provided by users using the "name" field of each parameter.
+
+    Available parameter types include:
+    STRING, INT, DOUBLE, BOOLEAN, DATE, SELECT, TEXTAREA, PRESET and others.
+
+    For the full list and for more details, see the documentation: https://doc.dataiku.com/dss/latest/plugins/reference/params.html
+    */
+    "params": [
+      
+    ]
+}

@@ -1,0 +1,82 @@
+/* This file is the descriptor for the Custom python exporter fasta-exporter */
+{
+    "meta" : {
+        // label: name of the exporter as displayed, should be short
+        "label": "Custom exporter fasta-exporter",
+
+        // description: longer string to help end users understand what this exporter is
+        "description": "",
+
+        // icon: must be one of the FontAwesome 5.15.4 icons, complete list here at https://fontawesome.com/v5/docs/
+        "icon": "fas fa-file-export",
+        "iconColor": "orange"
+    },
+
+    /* if the exporter produces a file, use OUTPUT_TO_FILE. If the exporter manages the output completely, use MANAGES_OUTPUT. */
+    "exportBehavior": "OUTPUT_TO_FILE",
+
+    /* when the exportBehavior is OUTPUT_TO_FILE, DSS will send the product of the export to the browser, and
+       needs to adjust the mime type */
+    "mime" : {
+        /* the mime-type sent to the browser */
+        "mimeType": "text/plain",
+        /* DSS creates file names by concatenating a unique identifier and this extension */
+        "extension": ".fasta"
+    },
+
+    /* to get the exporter to appear as an option of 'prepare for download' in the export dialog, add options here */
+    "exportOptions": [
+        {
+            "id": "Export as FASTA",
+            "label": "export using FASTA format",
+            "predefinedConfig" : { "id_column": "sequence_id", "sequence_column": "sequence" },
+            "compression": "NONE"
+        }
+    ],
+
+    /* if DSS should compress the export itself. Setting this parameter overrides the mime type definition
+    "compression": "FILE_OR_STREAM_TO_GZIP" or "DIR_TO_ZIP",
+    */
+
+    /* params:
+    DSS will generate a formular from this list of requested parameters.
+    Your component code can then access the value provided by users using the "name" field of each parameter.
+
+    Available parameter types include:
+    STRING, INT, DOUBLE, BOOLEAN, DATE, SELECT, TEXTAREA, PRESET and others.
+
+    For the full list and for more details, see the documentation: https://doc.dataiku.com/dss/latest/plugins/reference/params.html
+    */
+    "params": [
+      {
+        "type": "DATASET",
+        "name": "srcdataset",
+        "label": "Dataset to export"
+      },  
+      {
+        "name": "id_column",
+        "label": "ID Column",
+        "defaultValue": "sequence_id",
+        "type": "DATASET_COLUMN",
+        "datasetParamName": "srcdataset",
+        "description": "The column containing the sequence ID"
+      },
+      {
+        "name": "sequence_column",
+        "label": "Sequence Column",
+        "defaultValue": "sequence",
+        "type": "DATASET_COLUMN",
+        "datasetParamName": "srcdataset",
+        "description": "The column containing the sequence"
+      },
+      {
+        "name": "comment_column",
+        "label": "Comment Column (optional)",
+        "defaultValue": "None",
+        "type": "DATASET_COLUMN",
+        "datasetParamName": "srcdataset",
+        "description": "The column containing the comment (optional)",
+        "optional": true
+      }
+    ]
+}
