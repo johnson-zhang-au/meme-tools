@@ -1,7 +1,7 @@
 ## Code-env config after installation:
 plugin_meme-tools_managed > Containerized execution > Advanced container settings
 
-```dockerfile
+```docker
 # Install system dependencies, including Perl
 RUN yum groupinstall -y "Development Tools" && \
     yum install -y \
@@ -53,6 +53,7 @@ RUN wget https://meme-suite.org/meme/meme-software/${MEME_VERSION}/meme-${MEME_V
     cd meme-${MEME_VERSION} && \
     ./configure --prefix=$MEME_DIR --enable-build-libxml2 --enable-build-libxslt --with-python=/usr/local/bin/python3.10 && \
     make && \
+    make test &&\
     make install || true
 
 
