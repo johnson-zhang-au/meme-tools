@@ -1,6 +1,8 @@
 ## Code-env config after installation:
 plugin_meme-tools_managed > Containerized execution > Advanced container settings
 
+> Refer to [meme suite document](https://meme-suite.org/meme/doc/install.html?man_type=web) for installation 
+
 ```docker
 # Install system dependencies, including Perl
 RUN yum groupinstall -y "Development Tools" && \
